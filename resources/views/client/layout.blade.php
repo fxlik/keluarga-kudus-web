@@ -1,17 +1,18 @@
 <!DOCTYPE html>
+@inject('tampilan','App\Http\Controllers\ClientBerandaController')
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="author" content="Felik">
-    <meta name="description" content="Website Official Paroki Keluarga Kudus">
+    <meta name="description" content="{{$tampilan->tampilan()->site_desc}}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- Title -->
-    <title>Keluarga Kudus</title>
+    <title>{{$tampilan->tampilan()->site_title}}</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="{{asset('client/img/core-img/favicon.ico')}}">
+    <link rel="icon" href="{{asset('client/img/core-img')}}/{{$tampilan->tampilan()->favicon}}">
 
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="{{asset('client/style.css')}}">
@@ -37,15 +38,15 @@
                                 <!-- <a href="#" class="open" data-toggle="tooltip" data-placement="bottom" title="10 Am to 6 PM"><i class="fa fa-clock-o" aria-hidden="true"></i> <span>Opening Hours - 10 Am to 6 PM</span></a> -->
                                 <!-- Social Info -->
                                 <div class="top-social-info">
-                                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                    <a target="_blank" href="{{$tampilan->tampilan()->facebook}}"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                    <a target="_blank" href="{{$tampilan->tampilan()->twitter}}"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                    <a target="_blank" href="{{$tampilan->tampilan()->instagram}}"><i class="fa fa-instagram" aria-hidden="true"></i></a>
                                 </div>
                             </div>
                             <!-- Top Header Meta -->
                             <div class="top-header-meta">
-                                <a href="mailto:felik@untan.ac.id" class="email-address"><i class="fa fa-envelope" aria-hidden="true"></i> <span>email@gereja.org</span></a>
-                                <a href="#" class="phone"><i class="fa fa-phone" aria-hidden="true"></i> <span>+62 812 345 678</span></a>
+                                <a href="mailto:felik@untan.ac.id" class="email-address"><i class="fa fa-envelope" aria-hidden="true"></i> <span>{{$tampilan->tampilan()->email}}</span></a>
+                                <a href="#" class="phone"><i class="fa fa-phone" aria-hidden="true"></i> <span>{{$tampilan->tampilan()->no_hp}}</span></a>
                             </div>
                         </div>
                     </div>
@@ -58,52 +59,7 @@
         <div class="crose-main-menu">
             <div class="classy-nav-container breakpoint-off">
                 <div class="container">
-                    <!-- Menu -->
-                    <nav class="classy-navbar justify-content-between" id="croseNav">
-
-                        <!-- Nav brand -->
-                        <a href="#" class="nav-brand"><img src="{{asset('client/img/core-img/logo.png')}}" alt=""></a>
-
-                        <!-- Navbar Toggler -->
-                        <div class="classy-navbar-toggler">
-                            <span class="navbarToggler"><span></span><span></span><span></span></span>
-                        </div>
-
-                        <!-- Menu -->
-                        <div class="classy-menu">
-
-                            <!-- close btn -->
-                            <div class="classycloseIcon">
-                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                            </div>
-
-                            <!-- Nav Start -->
-                            <div class="classynav">
-                                <ul>
-                                    <li><a href="#">Beranda</a></li>
-                                    <li><a href="#">Profil</a>
-                                        <ul class="dropdown">
-                                            <li><a href="#">Sejarah</a></li>
-                                            <li><a href="#">Imam</a></li>
-                                            <li><a href="#">Wilayah</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Event Gereja</a></li>
-                                    <li><a href="#">Pelayanan</a></li>
-                                    <li><a href="#">Berita</a></li>
-                                    <li><a href="#">Contact</a></li>
-                                </ul>
-
-                                <!-- Search Button -->
-                                <div id="header-search"><i class="fa fa-search" aria-hidden="true"></i></div>
-
-                                <!-- Donate Button -->
-                                <!-- <a href="#" class="btn crose-btn header-btn">Donate Us</a> -->
-
-                            </div>
-                            <!-- Nav End -->
-                        </div>
-                    </nav>
+                    @include('client._partial.navbar')
                 </div>
             </div>
 
@@ -127,6 +83,8 @@
         <!-- ***** Navbar Area ***** -->
     </header>
     <!-- ##### Header Area End ##### -->
+    @yield('breadcrump')
+
     <div>
         @yield('content')
     </div>

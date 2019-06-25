@@ -30,7 +30,7 @@
                 </li>
                 <li><a href="{{route('client.berita')}}">Berita</a></li>
                 <li><a href="{{route('client.event')}}">Event Gereja</a></li>
-                <li><a href="#">Pelayan</a></li>
+                <li><a href="{{route('client.pelayan')}}">Pelayan</a></li>
                 <li><a href="{{route('client.kontak')}}">Contact</a></li>
             </ul>
 

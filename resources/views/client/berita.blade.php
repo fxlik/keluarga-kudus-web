@@ -27,7 +27,11 @@
                     <div class="col-12 col-md-6">
                         <div class="single-blog-post mb-50">
                             <div class="post-thumbnail">
-                                <a href="{{route('client.singleBerita', $item->slug)}}"><img src="{{('client/img/bg-img')}}/{{$item->foto}}" alt=""></a>
+                                @if ($item->foto != null)
+                                <a href="{{route('client.singleBerita', $item->slug)}}"><img src="{{('client/img/bg-img')}}/{{$item->foto}}" alt=""></a>                                                       
+                                @else
+                                <img src="{{asset('client/img/bg-img')}}/4.jpg" alt="event-tumbnail">
+                                @endif
                             </div>
                             <div class="post-content">
                                 <a href="{{route('client.singleBerita', $item->slug)}}" class="post-title">
@@ -37,7 +41,11 @@
                                     <a href="#"> Posted By: <i>{{$item->user->name}}</i></a>
                                     <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> {{ \Carbon\Carbon::parse($item->created_at)->format('M d Y')}}</a>
                                 </div>
-                                <p class="post-excerpt">{{str_limit($item->deskripsi,180)}}</p>
+                                <div class="content-group">
+                                @php
+                                    echo htmlspecialchars_decode(str_limit($item->deskripsi,180))
+                                @endphp
+                                </div>
                                 <a href="{{route('client.singleBerita', $item->slug)}}">Selanjutnya.. <i class="fa fa-angle-double-right"></i></a>
                             </div>
                         </div>

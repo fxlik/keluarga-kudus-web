@@ -36,6 +36,11 @@ Route::group(['prefix' => 'pengurus', 'middleware' => ['auth.basic', 'auth.admin
     Route::get('/beranda', 'PengurusBerandaController@beranda')->name('pengurus.beranda');
     Route::get('/pesan', 'PengurusBerandaController@tampilPesan')->name('pengurus.pesan');
     Route::get('/berita', 'PengurusBerandaController@tampilBerita')->name('pengurus.berita');
+    Route::get('/berita/create', 'PengurusBerandaController@createBerita')->name('pengurus.beritaCreate');
+    Route::post('berita/create/post', 'PengurusBerandaController@postBerita')->name('pengurus.beritaPost');
+    Route::get('berita/edit/{id}', 'PengurusBerandaController@editBerita')->name('pengurus.beritaEdit');
+    Route::get('berita/delete/{id}', 'PengurusBerandaController@deleteBerita')->name('pengurus.beritaDelete');
+    Route::post('berita/update', 'PengurusBerandaController@updateBerita')->name('pengurus.beritaUpdate');
     Route::get('/event', 'PengurusBerandaController@tampilEvent')->name('pengurus.event');
     Route::get('/organisasi', 'PengurusBerandaController@tampilOrganisasi')->name('pengurus.organisasi');
 

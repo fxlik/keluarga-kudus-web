@@ -14,6 +14,9 @@
         Kelola Event
     </div>
     <div class="card-body">
+        <div style="margin-bottom:15px;">
+            <a class="btn btn-xs btn-primary" href="#"><i class=" fas fa-plus-square"></i> Event Baru</a>
+        </div>
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
@@ -39,8 +42,8 @@
                     <i>{{ \Carbon\Carbon::parse($item->tanggal)->format('M d Y')}}, {{ \Carbon\Carbon::parse($item->tanggal)->format('H:i A')}} At {{$item->tempat}}</i>
                     </td>
                     <td>
-                        <a class="btn btn-xs btn-primary" href="#">Edit</a>
-                        <a class="btn btn-xs btn-danger" href="#">Hapus</a>
+                        <a class="btn btn-xxs btn-warning" href="#"><i class="fas fa-book"></i> Edit</a>
+                        <a class="btn btn-xxs btn-danger" href="#"><i class="fas fa-trash"></i> Hapus</a>
                     </td>
                     
                 </tr>

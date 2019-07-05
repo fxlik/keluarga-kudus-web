@@ -19,6 +19,9 @@
 
   <!-- Custom styles for this template-->
   <link href="{{asset('admin/css/sb-admin.css')}}" rel="stylesheet">
+  
+  {{-- summernote editor css --}}
+  <link href="{{asset('admin/editor/summernote.css')}}" rel="stylesheet">  
 
 </head>
 
@@ -63,6 +66,10 @@
   <!-- Demo scripts for this page-->
   <script src="{{asset('admin/js/demo/datatables-demo.js')}}"></script>
   <script src="{{asset('admin/js/demo/chart-area-demo.js')}}"></script>
+
+  <!-- include summernote js -->
+  <script src="{{asset('admin/editor/summernote.min.js')}}"></script>
+
   @yield('script')
 </body>
 

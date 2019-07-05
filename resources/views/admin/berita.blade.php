@@ -14,6 +14,9 @@
         Kelola Berita
     </div>
     <div class="card-body">
+        <div style="margin-bottom:15px;">
+            <a class="btn btn-xs btn-primary" href="{{route('pengurus.beritaCreate')}}"><i class=" fas fa-plus-square"></i> Berita Baru</a>
+        </div>
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
@@ -36,8 +39,8 @@
                     <td>{{$loop->iteration}}</td>
                     <td>{{$item->judul}}</td>
                     <td>
-                        <a class="btn btn-xs btn-primary" href="#">Edit</a>
-                        <a class="btn btn-xs btn-danger" href="#">Hapus</a>
+                        <a class="btn btn-xxs btn-warning" href="{{route('pengurus.beritaEdit', $item->id)}}"><i class="fas fa-book"></i> Edit</a>
+                        <a class="btn btn-xxs btn-danger" href="{{route('pengurus.beritaDelete', $item->id)}}" onclick="return confirm('Delete Berita?')"><i class="fas fa-trash"></i> Hapus</a>
                     </td>
                     
                 </tr>

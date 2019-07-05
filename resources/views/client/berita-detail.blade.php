@@ -26,14 +26,25 @@
                     <!-- Post Details Area -->
                     <div class="single-post-details-area">
                         <div class="post-thumbnail mb-30">
-                            <img src="{{asset('client/img/bg-img')}}/{{$berita->foto}}" alt="event-tumbnail">
+                            @if ($berita->foto != null)
+                            <img src="{{asset('client/img/bg-img')}}/{{$berita->foto}}" alt="event-tumbnail">                                
+                            @else
+                            <img src="{{asset('client/img/bg-img')}}/4.jpg" alt="event-tumbnail">
+                            @endif
                         </div>
                         <div class="post-content">
                             <h2 class="post-title">{{$berita->judul}}</h2>
                             <div>
                                 <a style="color:brown;" href="#"><i class="fa fa-calendar" aria-hidden="true"></i> <i>{{ \Carbon\Carbon::parse($berita->created_at)->format('M d Y')}}</i></a>
                             </div>
-                            <p>{{$berita->deskripsi}}</p>
+                            <div class="content-group">
+                                <?php
+                                $str ="{$berita->deskripsi}";
+                                
+                                echo htmlspecialchars_decode($str);
+                                ?>
+                            </div>
+                            {{-- <p>{{$berita->deskripsi}}</p> --}}
                         </div>
                     </div>
 

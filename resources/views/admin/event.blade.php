@@ -15,7 +15,7 @@
     </div>
     <div class="card-body">
         <div style="margin-bottom:15px;">
-            <a class="btn btn-xs btn-primary" href="#"><i class=" fas fa-plus-square"></i> Event Baru</a>
+            <a class="btn btn-xs btn-primary" href="{{route('pengurus.eventCreate')}}"><i class=" fas fa-plus-square"></i> Event Baru</a>
         </div>
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -29,7 +29,7 @@
                 <tfoot>
                     <tr>
                         <th>No.</th>
-                        <th>Judul Berita</th>
+                        <th>Event</th>
                         <th>.</th>
                     </tr>
                 </tfoot>
@@ -42,8 +42,8 @@
                     <i>{{ \Carbon\Carbon::parse($item->tanggal)->format('M d Y')}}, {{ \Carbon\Carbon::parse($item->tanggal)->format('H:i A')}} At {{$item->tempat}}</i>
                     </td>
                     <td>
-                        <a class="btn btn-xxs btn-warning" href="#"><i class="fas fa-book"></i> Edit</a>
-                        <a class="btn btn-xxs btn-danger" href="#"><i class="fas fa-trash"></i> Hapus</a>
+                        <a class="btn btn-xxs btn-warning" href="{{route('pengurus.eventEdit', $item->id)}}"><i class="fas fa-book"></i> Edit</a>
+                        <a class="btn btn-xxs btn-danger" href="{{route('pengurus.eventDelete', $item->id)}}" onclick="return confirm('Delete Event dari sistem?')"><i class="fas fa-trash"></i> Hapus</a>
                     </td>
                     
                 </tr>

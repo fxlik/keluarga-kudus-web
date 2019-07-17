@@ -37,7 +37,10 @@
                     @foreach ($berita as $item)
                 <tr>
                     <td>{{$loop->iteration}}</td>
-                    <td>{{$item->judul}}</td>
+                    <td>
+                        {{$item->judul}} <br>
+                        <span style="color:darkgray; font-size:13px;"> Dipost pada: <i>{{ \Carbon\Carbon::parse($item->created_at)->format('M d Y')}}</i> // Kategori: <i>{{$item->kategori}}</i></span>                        
+                    </td>
                     <td>
                         <a class="btn btn-xxs btn-warning" href="{{route('pengurus.beritaEdit', $item->id)}}"><i class="fas fa-book"></i> Edit</a>
                         <a class="btn btn-xxs btn-danger" href="{{route('pengurus.beritaDelete', $item->id)}}" onclick="return confirm('Delete Berita?')"><i class="fas fa-trash"></i> Hapus</a>

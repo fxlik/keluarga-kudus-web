@@ -27,14 +27,19 @@
                     <!-- Post Details Area -->
                     <div class="single-post-details-area">
                         <div class="post-thumbnail mb-30">
-                            <img src="{{asset('client/img/bg-img')}}/{{$sejarah->sejarah()->foto}}" alt="event-tumbnail">
+                            {{-- <img src="{{asset('client/img/bg-img')}}/{{$sejarah->sejarah()->foto}}" alt="event-tumbnail"> --}}
                         </div>
                         <div class="post-content">
                             <h2 class="post-title">Sejarah Gereja</h2>
                             <div>
                                 {{-- <a style="color:brown;" href="#"><i class="fa fa-calendar" aria-hidden="true"></i> <i>{{ \Carbon\Carbon::parse($berita->created_at)->format('M d Y')}}</i></a> --}}
                             </div>
-                            <p>{{$sejarah->sejarah()->sejarah}}</p>
+                            <div class="content-group">
+                                @php
+                                    echo htmlspecialchars_decode($sejarah->sejarah()->sejarah)
+                                @endphp
+                            </div>
+                            {{-- <p>{{$sejarah->sejarah()->sejarah}}</p> --}}
                         </div>
                     </div>
 

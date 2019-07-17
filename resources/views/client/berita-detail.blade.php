@@ -26,16 +26,16 @@
                     <!-- Post Details Area -->
                     <div class="single-post-details-area">
                         <div class="post-thumbnail mb-30">
-                            @if ($berita->foto != null)
-                            <img src="{{asset('client/img/bg-img')}}/{{$berita->foto}}" alt="event-tumbnail">                                
-                            @else
+                            @if (empty($berita->foto))
                             <img src="{{asset('client/img/bg-img')}}/4.jpg" alt="event-tumbnail">
+                            @else
+                            <img src="{{asset('client/img/bg-img')}}/{{$berita->foto}}" alt="event-tumbnail">                                
                             @endif
                         </div>
                         <div class="post-content">
                             <h2 class="post-title">{{$berita->judul}}</h2>
                             <div>
-                                <a style="color:brown;" href="#"><i class="fa fa-calendar" aria-hidden="true"></i> <i>{{ \Carbon\Carbon::parse($berita->created_at)->format('M d Y')}}</i></a>
+                                <a style="color:brown;" href="#"><i class="fa fa-calendar" aria-hidden="true"></i> <i>Dipost pada: {{ \Carbon\Carbon::parse($berita->created_at)->format('M d Y')}}</i> / <i class="fa fa-th-list" aria-hidden="true"></i> <i>Kategori: {{$berita->kategori}}</i></a>
                             </div>
                             <div class="content-group">
                                 <?php

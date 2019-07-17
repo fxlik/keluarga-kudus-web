@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Tampilan;
 use App\Slider;
 use App\Event;
+use App\Galeri;
 
 class ClientBerandaController extends Controller
 {
@@ -18,8 +19,18 @@ class ClientBerandaController extends Controller
     }
 
     public function berita(){
-        $news = \App\Berita::orderBy('created_at', 'DESC')->paginate(6);
+        $news = \App\Berita::where('kategori', 'berita')->orderBy('created_at', 'DESC')->paginate(6);
         return view('client.berita', compact('news'));
+    }
+
+    public function beritaMingguan(){
+        $news = \App\Berita::where('kategori', 'pengumuman mingguan')->orderBy('created_at', 'DESC')->paginate(6);
+        return view('client.berita-mingguan', compact('news'));
+    }
+
+    public function beritaKawinan(){
+        $news = \App\Berita::where('kategori', 'perkawinan')->orderBy('created_at', 'DESC')->paginate(6);
+        return view('client.berita-perkawinan', compact('news'));
     }
 
     public function event(){
@@ -61,6 +72,11 @@ class ClientBerandaController extends Controller
     public function slider(){
         $slider = Slider::all();
         return $slider;
+    }
+
+    public function galeri(){
+        $galeri = Galeri::orderBy('id', 'DESC')->paginate(10);
+        return $galeri;
     }
 
     public function beritaSidebar(){

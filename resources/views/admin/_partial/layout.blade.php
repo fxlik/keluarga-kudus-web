@@ -11,6 +11,8 @@
 
   <title>Admin</title>
 
+  <link href="{{asset('client/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+
   <!-- Custom fonts for this template-->
   <link href="{{asset('admin/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
 
@@ -21,8 +23,11 @@
   <link href="{{asset('admin/css/sb-admin.css')}}" rel="stylesheet">
   
   {{-- summernote editor css --}}
-  <link href="{{asset('admin/editor/summernote.css')}}" rel="stylesheet">  
+  <link href="{{asset('admin/editor/summernote.css')}}" rel="stylesheet">
 
+  {{-- datepicker --}}
+  {{-- <link href="{{asset('admin/datepicker/bootstrap-datetimepicker.min.css')}}" type="text/css" media="screen">   --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
 </head>
 
 <body id="page-top">
@@ -59,6 +64,10 @@
   <script src="{{asset('admin/vendor/chart.js/Chart.min.js')}}"></script>
   <script src="{{asset('admin/vendor/datatables/jquery.dataTables.js')}}"></script>
   <script src="{{asset('admin/vendor/datatables/dataTables.bootstrap4.js')}}"></script>
+  {{-- datepicker js --}}
+  {{-- <script src="{{asset('admin/datepicker/bootstrap-datetimepicker.min.js')}}" type="text/javascript"></script> --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
 
   <!-- Custom scripts for all pages-->
   <script src="{{asset('admin/js/sb-admin.min.js')}}"></script>
@@ -69,6 +78,8 @@
 
   <!-- include summernote js -->
   <script src="{{asset('admin/editor/summernote.min.js')}}"></script>
+
+  
 
   @yield('script')
 </body>

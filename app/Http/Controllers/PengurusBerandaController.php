@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Berita;
+use App\Event;
+use App\Pesan; 
+
 
 class PengurusBerandaController extends Controller
 {
@@ -22,6 +25,11 @@ class PengurusBerandaController extends Controller
     public function tampilPesan(){
         $pesan = \DB::table('pesan')->orderBy('created_at', 'DESC')->get();
         return view('admin.pesan', compact('pesan'));
+    }
+
+    public function hapusPesan($id){
+        $pesanin = Pesan::findOrFail($id)->delete();
+        return back();
     }
 
     public function tampilBerita(){
@@ -48,9 +56,18 @@ class PengurusBerandaController extends Controller
         $berita->SEOtitle = $request->judul;
         $berita->SEOdesc = $request->editordata;
         $berita->author = \Auth::user()->id;
+        $berita->kategori = $request->kategori;
         $berita->status = 1;
         $berita->created_at = $waktu;
         $berita->updated_at = $waktu;
+
+        if ($request->hasFile('image')){
+            $file = $request->file('image');
+            $ext = $file->getClientOriginalExtension();
+            $namafile = str_slug('tn-berita'.'-'.time().'-'.rand(10,100)).'.'.$ext;
+            $file->move(public_path('client/img/bg-img'), $namafile);
+            $berita->foto = $namafile;
+        }
         $berita->save();
 
         return redirect()->route('pengurus.berita');
@@ -75,7 +92,18 @@ class PengurusBerandaController extends Controller
         $deskripsi = $request->editordata;
         $SEOtitle = $request->judul;
         $SEOdesc = $request->editordata;
+        $kategori = $request->kategori;
         $updated_at = $waktuUpdate;
+
+        if ($request->hasFile('image')){
+            $file = $request->file('image');
+            $ext = $file->getClientOriginalExtension();
+            $namafile = str_slug('tn-berita'.'-'.time().'-'.rand(10,100)).'.'.$ext;
+            $file->move(public_path('client/img/bg-img'), $namafile);
+            $foto = $namafile;
+        }else{
+            $foto = null;
+        }
 
         $beritaUpdate->update([
             'judul' => $judul,
@@ -83,6 +111,8 @@ class PengurusBerandaController extends Controller
             'deskripsi' => $deskripsi,
             'SEOtitle' => $SEOtitle,
             'SEOdesc' => $SEOdesc,
+            'foto' => $foto,
+            'kategori' => $kategori,
             'updated_at' => $updated_at
         ]);
 
@@ -98,6 +128,108 @@ class PengurusBerandaController extends Controller
         $event = \DB::table('event')->orderBy('tanggal', 'DESC')->get();
         return view('admin.event', compact('event'));
     }
+
+    public function createEvent(){
+        return view('admin.event-create');
+    }
+
+    public function postEvent(Request $request){
+        $slug = str_slug($request->judul, '-');
+        if (Event::where('slug', $slug)->first() !=null) {
+            $slug = $slug.'-'.time();
+        }
+
+        $waktu = \Carbon\Carbon::now();
+        $tanggalin = $request->tanggal;
+        $tanggalin2 = strtotime($tanggalin);
+        $tanggal = \Carbon\Carbon::createFromTimestamp($tanggalin2);
+        $event = new Event;
+        $event->judul = $request->judul;
+        $event->slug = $slug;
+        $event->deskripsi = $request->editordata;
+        $event->SEOtitle = $request->judul;
+        $event->SEOdesc = $request->editordata;
+        $event->tempat = $request->tempat;
+        $event->tanggal = $tanggal;
+        $event->status = 1;
+        $event->created_at = $waktu;
+        $event->updated_at = $waktu;
+
+        if ($request->hasFile('image')){
+            $file = $request->file('image');
+            $ext = $file->getClientOriginalExtension();
+            $namafile = str_slug('tn-event'.'-'.time().'-'.rand(10,100)).'.'.$ext;
+            $file->move(public_path('client/img/bg-img'), $namafile);
+            $event->foto = $namafile;
+        }
+        $event->save();
+
+        return redirect()->route('pengurus.event');
+    }
+
+    public function editEvent($id){
+        $event = Event::find($id);
+        return view('admin.event-edit', compact('event', 'id'));
+    }
+
+    public function updateEvent(Request $request){
+        $eventUpdate = Event::findOrFail($request->event_id);
+        $slug = str_slug($request->judul, '-');
+        if (Event::where('slug', $slug)->first() !=null) {
+            $slug = $slug.'-'.time();
+        }
+
+        $waktuUpdate = \Carbon\Carbon::now();
+        if ($request->tanggal != null) {
+            $tanggalin = $request->tanggal;
+            $tanggalin2 = strtotime($tanggalin);
+            $tanggal = \Carbon\Carbon::createFromTimestamp($tanggalin2);
+        } else {
+            $tanggal = $eventUpdate->tanggal;
+        }
+        // return $tanggal;
+
+        $judul = $request->judul;
+        $slug = $slug;
+        $deskripsi = $request->editordata;
+        $SEOtitle = $request->judul;
+        $SEOdesc = $request->editordata;
+        $tempat = $request->tempat;
+        $tanggal0 = $tanggal;
+        $updated_at = $waktuUpdate;
+
+        if ($request->hasFile('image')){
+            $file = $request->file('image');
+            $ext = $file->getClientOriginalExtension();
+            $namafile = str_slug('tn-event'.'-'.time().'-'.rand(10,100)).'.'.$ext;
+            $file->move(public_path('client/img/bg-img'), $namafile);
+            $foto = $namafile;
+        }else{
+            $foto = $eventUpdate->foto;
+        }
+        
+
+        $eventUpdate->update([
+            'judul' => $judul,
+            'slug' => $slug,
+            'deskripsi' => $deskripsi,
+            'SEOtitle' => $SEOtitle,
+            'SEOdesc' => $SEOdesc,
+            'foto' => $foto,
+            'tanggal' => $tanggal0,
+            'tempat' => $tempat,
+            'updated_at' => $updated_at
+        ]);
+
+        return redirect()->route('pengurus.event');
+    }
+
+    public function deleteEvent($id){
+        $event= Event::findOrFail($id)->delete();
+        return back();
+    }
+
+
     public function tampilOrganisasi(){
         // $event = \DB::table('event')->orderBy('tanggal', 'DESC')->get();
         return view('admin.organisasi');

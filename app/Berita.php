@@ -14,6 +14,7 @@ class Berita extends Model
         'SEOtitle',
         'SEOdesc',
         'foto',
+        'kategori',
         'author',
         'status',
         'created_at',

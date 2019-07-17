@@ -46,7 +46,7 @@
                                     echo htmlspecialchars_decode(str_limit($item->deskripsi,180))
                                 @endphp
                                 </div>
-                                <a href="{{route('client.singleBerita', $item->slug)}}">Selanjutnya.. <i class="fa fa-angle-double-right"></i></a>
+                                <a href="{{route('client.singleBerita', $item->slug)}}"><i>Baca Selengkapnya..</i> <i class="fa fa-angle-double-right"></i></a>
                             </div>
                         </div>
                     </div>

@@ -28,9 +28,17 @@
                         <li><a href="#">Wilayah</a></li>
                     </ul>
                 </li>
-                <li><a href="{{route('client.berita')}}">Berita</a></li>
+                <li>
+                    <a href="#">Berita & Pengumuman</a>
+                    <ul class="dropdown">
+                        <li><a href="{{route('client.beritaMingguan')}}">Mingguan</a></li>
+                        <li><a href="{{route('client.beritaKawinan')}}">Perkawinan</a></li>
+                        <li><a href="{{route('client.berita')}}">Berita</a></li>
+                    </ul>
+                </li>
+                {{-- <li><a href="{{route('client.berita')}}">Berita</a></li> --}}
                 <li><a href="{{route('client.event')}}">Event Gereja</a></li>
-                <li><a href="{{route('client.pelayan')}}">Pelayan</a></li>
+                <li><a href="{{route('client.pelayan')}}">Pelayan Wilayah</a></li>
                 <li><a href="{{route('client.kontak')}}">Contact</a></li>
             </ul>
 

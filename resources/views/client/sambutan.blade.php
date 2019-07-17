@@ -26,15 +26,19 @@
                 <div class="blog-posts-area">
                     <!-- Post Details Area -->
                     <div class="single-post-details-area">
-                        <div class="post-thumbnail mb-30">
+                        {{-- <div class="post-thumbnail mb-30">
                             <img src="{{asset('client/img/bg-img')}}/{{$sambutan->sambutan()->foto}}" alt="event-tumbnail">
-                        </div>
+                        </div> --}}
                         <div class="post-content">
                             <h2 class="post-title">Sambutan</h2>
                             <div>
                                 {{-- <a style="color:brown;" href="#"><i class="fa fa-calendar" aria-hidden="true"></i> <i>{{ \Carbon\Carbon::parse($berita->created_at)->format('M d Y')}}</i></a> --}}
                             </div>
-                            <p>{{$sambutan->sambutan()->sambutan}}</p>
+                            <div class="content-group">
+                                @php
+                                    echo htmlspecialchars_decode($sambutan->sambutan()->sambutan)
+                                @endphp
+                            </div>
                         </div>
                     </div>
 

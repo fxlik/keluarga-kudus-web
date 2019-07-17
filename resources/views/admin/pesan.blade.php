@@ -23,6 +23,7 @@
                         <th>Email</th>
                         <th>HP</th>
                         <th>Pesan</th>
+                        <th>.</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -32,6 +33,7 @@
                         <th>Email</th>
                         <th>HP</th>
                         <th>Pesan</th>
+                        <th>.</th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -42,6 +44,9 @@
                     <td>{{$item->email}}</td>
                     <td>{{$item->hp}}</td>
                     <td>{{$item->pesan}}</td>
+                    <td>
+                    <a class="btn btn-xxs btn-danger" href="{{route('pengurus.pesanDelete', $item->id)}}" onclick="return confirm('Hapus pesan ini?')"><i class="fas fa-trash"></i> Hapus</a>
+                    </td>
                 </tr>
                     @endforeach
                 </tbody>

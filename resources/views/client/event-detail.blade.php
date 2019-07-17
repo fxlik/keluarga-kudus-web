@@ -35,7 +35,14 @@
                                 <a style="color:brown" href="#"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ \Carbon\Carbon::parse($event->tanggal)->format('H:i A')}}</a> /
                                 <a style="color:brown" href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> {{$event->tempat}}</a> 
                             </div>
-                            <p>{{$event->deskripsi}}</p>
+                            <div class="content-group">
+                                <?php
+                                $str ="{$event->deskripsi}";
+                                
+                                echo htmlspecialchars_decode($str);
+                                ?>
+                            </div>
+                            {{-- <p>{{$event->deskripsi}}</p> --}}
                         </div>
                     </div>
                 </div>

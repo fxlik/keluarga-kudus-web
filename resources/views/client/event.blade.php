@@ -42,7 +42,11 @@
                                 <a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ \Carbon\Carbon::parse($item->tanggal)->format('H:i A')}} - selesai</a>
                                 <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ \Carbon\Carbon::parse($item->tanggal)->format('H:i A')}}</a>
                             </div>
-                            <p>{{str_limit($item->deskripsi,200)}}</p>
+                            <div class="content-group">
+                                @php
+                                    echo htmlspecialchars_decode(str_limit($item->deskripsi,180))
+                                @endphp
+                            </div>
                             <a href="{{route('client.singleEvent', $item->slug)}}">Selengkapnya <i class="fa fa-angle-double-right"></i></a>
                         </div>
                         <div class="find-out-more-btn">

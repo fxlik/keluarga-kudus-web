@@ -65,6 +65,11 @@ class ClientBerandaController extends Controller
         return back();
     }
 
+    public function pelayananWilayah(){
+        $usulan = \App\Usulan::with('wilayah', 'organisasi', 'seksi')->orderBy('id', 'desc')->paginate(20);
+        return view('client.pelayan', compact('usulan'));
+    }
+
     public function tampilan(){
         $tampilan = Tampilan::find(1);
         return $tampilan;

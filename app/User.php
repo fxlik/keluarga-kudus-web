@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'level', 'foto', 'wilayah_id', 'is_verified', 'password'
     ];
 
     /**
@@ -26,4 +26,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function wilayah()
+    {
+        return $this->belongsTo('App\Wilayah');
+    }
+
+    public function usulan()
+    {
+    	return $this->hasMany('App\Usulan');
+    }
 }

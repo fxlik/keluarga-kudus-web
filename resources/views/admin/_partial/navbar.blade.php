@@ -1,6 +1,10 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-
+    @if (Auth::user()->level == 'admin')
     <a class="navbar-brand mr-1" href="{{route('pengurus.beranda')}}">Admin Page</a>
+    @else
+    <a class="navbar-brand mr-1" href="{{route('pw.beranda')}}">Admin Page</a>
+    @endif
+   
 
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
       <i class="fas fa-bars"></i>

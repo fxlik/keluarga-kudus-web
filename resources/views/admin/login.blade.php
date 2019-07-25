@@ -22,6 +22,9 @@
 <body class="bg-light">
 
   <div class="container">
+    <div class="" style="margin-top:50px;">
+        <center><h5><b>Halaman Login Pengurus</b></h5></center>
+    </div>
     <div class="card card-login mx-auto mt-5">
       <div class="card-header">Login</div>
       <div class="card-body">

@@ -11,7 +11,12 @@ class PengurusController extends Controller
         if (!Auth::check()) {
             return view('admin.login');
         }else {
-            return redirect('pengurus/beranda');
+            if(Auth::user()->level == 'admin'){
+                return redirect('pengurus/beranda');
+            }
+            else{
+                return redirect('pengurus/home');
+            }
         }
     }
 
@@ -22,7 +27,7 @@ class PengurusController extends Controller
                 return redirect()->intended('pengurus/beranda');
             }
             else{
-                return redirect()->intended('pengurus/login');
+                return redirect()->intended('pengurus/home');
             }
 	    }else {
 	        return back()->with('error', 'Username/password salah, periksa kembali!');

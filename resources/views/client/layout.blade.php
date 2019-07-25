@@ -16,6 +16,9 @@
 
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="{{asset('client/style.css')}}">
+
+    <!-- Page level plugin CSS-->
+    <link href="{{asset('admin/vendor/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet">
 </head>
 <body>
     <!-- ##### Preloader ##### -->
@@ -101,6 +104,7 @@
     <script src="{{asset('client/js/plugins/plugins.js')}}"></script>
     <!-- Active js -->
     <script src="{{asset('client/js/active.js')}}"></script>
+    <script src="{{asset('admin/js/demo/datatables-demo.js')}}"></script>
     @yield('script')
 </body>
 </html>

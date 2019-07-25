@@ -57,5 +57,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'auth.admin' => \App\Http\Middleware\onlyPengurus::class,
+        'auth.pw' => \App\Http\Middleware\pengurusWilayah::class,
     ];
 }

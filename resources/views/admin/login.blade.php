@@ -52,7 +52,7 @@
           <div class="form-group">
             <div class="checkbox">
               <label>
-                <input type="checkbox" value="remember-me">
+                <input type="checkbox" onclick="lihatPassword()" class="styled">
                 Lihat Password
               </label>
             </div>
@@ -70,6 +70,16 @@
   <!-- Core plugin JavaScript-->
   <script src="{{asset('admin/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
+  <script>
+  function lihatPassword() {
+		var x = document.getElementById("inputPassword");
+		if (x.type === "password") {
+			x.type = "text";
+		} else {
+			x.type = "password";
+		}
+	}
+  </script>
 </body>
 
 </html>

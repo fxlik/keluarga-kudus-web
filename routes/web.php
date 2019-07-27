@@ -28,6 +28,7 @@ Route::get('pelayan', 'ClientBerandaController@pelayananWilayah')->name('client.
 Route::post('kirim-pesan', 'ClientBerandaController@kirimPesan')->name('client.kirimPesan');
 Route::get('event/{slug}', 'ClientBerandaController@singleEvent')->name('client.singleEvent');
 Route::get('berita/{slug}', 'ClientBerandaController@singleBerita')->name('client.singleBerita');
+Route::get('organisasi', 'ClientBerandaController@organisasi')->name('client.organisasi');
 
 // admin
 Route::get('pengurus/login', 'PengurusController@halaman_login_operator')->name('pengurus.login');
@@ -45,7 +46,7 @@ Route::group(['prefix' => 'pengurus', 'middleware' => ['auth.basic', 'auth.admin
     Route::get('berita/edit/{id}', 'PengurusBerandaController@editBerita')->name('pengurus.beritaEdit');
     Route::get('berita/delete/{id}', 'PengurusBerandaController@deleteBerita')->name('pengurus.beritaDelete');
     Route::post('berita/update', 'PengurusBerandaController@updateBerita')->name('pengurus.beritaUpdate');
-    
+    Route::post('berita/publish', 'PengurusBerandaController@publishBerita')->name('pengurus.beritaPublish');
     // kelola event
     Route::get('/event', 'PengurusBerandaController@tampilEvent')->name('pengurus.event');
     Route::get('/event/create', 'PengurusBerandaController@createEvent')->name('pengurus.eventCreate');
@@ -53,6 +54,7 @@ Route::group(['prefix' => 'pengurus', 'middleware' => ['auth.basic', 'auth.admin
     Route::get('event/delete/{id}', 'PengurusBerandaController@deleteEvent')->name('pengurus.eventDelete');
     Route::post('event/create/post', 'PengurusBerandaController@postEvent')->name('pengurus.eventPost');
     Route::post('event/update', 'PengurusBerandaController@updateEvent')->name('pengurus.eventUpdate');
+    Route::post('event/publish', 'PengurusBerandaController@validasiEvent')->name('pengurus.eventPublish');
 
     // tampilan
     Route::get('sejarah', 'PengurusTampilanController@editSejarah')->name('pengurus.sejarahEdit');
@@ -101,16 +103,19 @@ Route::group(['prefix' => 'pengurus', 'middleware' => ['auth.basic', 'auth.admin
     Route::get('organisasi/pelayanan/{organisasi_id}', 'PengurusOrganisasiController@pelayananOrganisasi')->name('pengurus.pelayananOrganisasi');
     Route::get('validasi-usulan', 'PengurusWilayahController@validasiUsulan')->name('pengurus.validasiUsulan');
     Route::post('validasi-usulan/post', 'PengurusWilayahController@postValidasiUsulan')->name('pengurus.validasiUsulanPost');
-});
 
-Route::group(['prefix' => 'pengurus', 'middleware' => ['auth.basic', 'auth.pw']], function() {
-    Route::get('home', 'PwController@beranda')->name('pw.beranda');
+    // pengurus wilayah move move
+    // Route::get('home', 'PwController@beranda')->name('pw.beranda');
     Route::get('usulan-pelayanan', 'PwController@usulan')->name('pw.usulan');
     Route::get('usulan-pelayanan/create', 'PwController@usulanCreate')->name('pw.usulanCreate');
     Route::get('json-seksi', 'PwController@jsonSeksi')->name('pw.jsonSeksi');
     Route::post('usulan-pelayan/post', 'PwController@usulanPost')->name('pw.usulanPost');
     Route::get('usulan-pelayanan/delete/{id}', 'PwController@usulanDelete')->name('pw.usulanDelete');
 });
+
+// Route::group(['prefix' => 'pengurus', 'middleware' => ['auth.basic', 'auth.pw']], function() {
+    
+// });
 
 // Route::get('pengurus/beranda', function(){
 //     return view('admin.beranda');

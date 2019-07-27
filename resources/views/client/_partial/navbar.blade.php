@@ -25,7 +25,7 @@
                     <ul class="dropdown">
                         <li><a href="{{route('client.sambutan')}}">Sambutan</a></li>
                         <li><a href="{{route('client.sejarah')}}">Sejarah</a></li>
-                        <li><a href="#">Wilayah</a></li>
+                        <li><a href="{{route('client.organisasi')}}">Organisasi</a></li>
                     </ul>
                 </li>
                 <li>

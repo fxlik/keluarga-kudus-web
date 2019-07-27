@@ -33,8 +33,16 @@ class PengurusBerandaController extends Controller
     }
 
     public function tampilBerita(){
-        $berita = \DB::table('berita')->orderBy('created_at', 'DESC')->get();
-        return view('admin.berita', compact('berita'));
+        if (\Auth::user()->level == 'admin') {
+            $user_id = \Auth::user()->id;
+            if (\Auth::user()->is_verified == 0) {
+                $berita = Berita::with('user')->where('author', $user_id)->orderBy('created_at', 'DESC')->get();
+            } else {
+                $berita = Berita::with('user')->orderBy('created_at', 'DESC')->get();
+            }
+            // return $berita;
+            return view('admin.berita', compact('berita'));
+        }
     }
     
     public function createBerita(){
@@ -45,6 +53,11 @@ class PengurusBerandaController extends Controller
         $slug = str_slug($request->judul, '-');
         if (Berita::where('slug', $slug)->first() !=null) {
             $slug = $slug.'-'.time();
+        }
+        if (\Auth::user()->is_verified == 0){
+            $statusin = 0;
+        } else{
+            $statusin = 1;
         }
 
         $waktu = \Carbon\Carbon::now();
@@ -57,7 +70,7 @@ class PengurusBerandaController extends Controller
         $berita->SEOdesc = $request->editordata;
         $berita->author = \Auth::user()->id;
         $berita->kategori = $request->kategori;
-        $berita->status = 1;
+        $berita->status = $statusin;
         $berita->created_at = $waktu;
         $berita->updated_at = $waktu;
 
@@ -119,6 +132,16 @@ class PengurusBerandaController extends Controller
         return redirect()->route('pengurus.berita');
     }
 
+    public function publishBerita(Request $request){
+        $beritaPublish = Berita::findOrFail($request->berita_id);
+        
+        $beritaPublish->update([
+            'status' => 1
+        ]);
+        
+        return back();
+    }
+
     public function deleteBerita($id){
         $berita = Berita::findOrFail($id)->delete();
         return back();
@@ -138,6 +161,12 @@ class PengurusBerandaController extends Controller
         if (Event::where('slug', $slug)->first() !=null) {
             $slug = $slug.'-'.time();
         }
+        // end
+        if (\Auth::user()->is_verified == 0){
+            $statusin = 0;
+        } else{
+            $statusin = 1;
+        }
 
         $waktu = \Carbon\Carbon::now();
         $tanggalin = $request->tanggal;
@@ -151,7 +180,7 @@ class PengurusBerandaController extends Controller
         $event->SEOdesc = $request->editordata;
         $event->tempat = $request->tempat;
         $event->tanggal = $tanggal;
-        $event->status = 1;
+        $event->status = $statusin;
         $event->created_at = $waktu;
         $event->updated_at = $waktu;
 
@@ -226,6 +255,16 @@ class PengurusBerandaController extends Controller
 
     public function deleteEvent($id){
         $event= Event::findOrFail($id)->delete();
+        return back();
+    }
+
+    public function validasiEvent(Request $request){
+        $eventPublish = Event::findOrFail($request->event_id);
+        
+        $eventPublish->update([
+            'status' => 1
+        ]);
+        
         return back();
     }
 

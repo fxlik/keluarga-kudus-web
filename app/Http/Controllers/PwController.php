@@ -15,7 +15,7 @@ class PwController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth.pw');
+        $this->middleware('auth.admin');
     }
 
     public function beranda(){

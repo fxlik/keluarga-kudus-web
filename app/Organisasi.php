@@ -15,7 +15,7 @@ class Organisasi extends Model
         'updated_at'
     ];
 
-    public function Seksi()
+    public function seksi()
     {
     	return $this->hasMany('App\Seksi');
     }

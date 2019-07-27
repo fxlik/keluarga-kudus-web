@@ -33,7 +33,7 @@
 <body id="page-top">
     @include('admin._partial.navbar')
     <div id="wrapper">
-        @include('admin._partial.sidebar')
+        @include('admin._partial.sidebar-duplicate')
         <div id="content-wrapper">
             <div class="container-fluid">
                 <!-- Breadcrumbs-->

@@ -26,7 +26,7 @@
     </li>
     <li class="{{set_active(['pengurus.organisasi', 'pengurus.organisasiDetail', 'pengurus.pelayananOrganisasi'])}} nav-item">
       <a class="nav-link" href="{{route('pengurus.organisasi')}}">
-      <i class="fas fa-fw fa-user"></i>
+      <i class="fas fa-fw fa-sitemap"></i>
       <span>Organisasi</span></a>
     </li>
     <li class="{{set_active(['pengurus.galeriCreate', 'pengurus.galeri', 'pengurus.sliderCreate', 'pengurus.slider', 'pengurus.editTampilanUmum', 'pengurus.tampilanUmum', 'pengurus.sejarahEdit', 'pengurus.sejarahUpdate', 'pengurus.sambutan', 'pengurus.sambutanEdit'])}} nav-item dropdown">
@@ -62,6 +62,11 @@
         <h6 class="dropdown-header"><i>Validasi Usulan</i></h6>
         <a class="dropdown-item {{set_active(['pengurus.validasiUsulan'])}}" href="{{route('pengurus.validasiUsulan')}}">Usulan Pelayanan</a>
       </div>
+    </li>
+    <li class=" {{set_active(['pengurus.userIndex', 'pengurus.userCreate'])}} nav-item">
+      <a class="nav-link" href="{{route('pengurus.userIndex')}}">
+      <i class="fas fa-fw fa-user"></i>
+      <span>Pengguna</span></a>
     </li>
   </ul>
   @elseif(Auth::user()->is_verified == 0)

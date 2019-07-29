@@ -111,6 +111,16 @@ Route::group(['prefix' => 'pengurus', 'middleware' => ['auth.basic', 'auth.admin
     Route::get('json-seksi', 'PwController@jsonSeksi')->name('pw.jsonSeksi');
     Route::post('usulan-pelayan/post', 'PwController@usulanPost')->name('pw.usulanPost');
     Route::get('usulan-pelayanan/delete/{id}', 'PwController@usulanDelete')->name('pw.usulanDelete');
+
+    // urusan pengguna
+    Route::get('kelola-pengguna', 'PengurusUserController@index')->name('pengurus.userIndex');
+    Route::get('kelola-pengguna/create', 'PengurusUserController@create')->name('pengurus.userCreate');
+    Route::post('kelola-pengguna/post', 'PengurusUserController@post')->name('pengurus.userPost');
+    Route::get('json-wilayah', 'PengurusUserController@jsonWilayah')->name('pengurus.jsonWilayah');
+    Route::get('kelola-pengguna/delete/{id}', 'PengurusUserController@delete')->name('pengurus.userDelete');
+    Route::post('kelola-pengguna/update', 'PengurusUserController@update')->name('pengurus.userUpdate');
+    Route::post('kelola-pengguna/ganti', 'PengurusUserController@gantiPassword')->name('pengurus.userGantiPassword');
+
 });
 
 // Route::group(['prefix' => 'pengurus', 'middleware' => ['auth.basic', 'auth.pw']], function() {

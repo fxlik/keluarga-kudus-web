@@ -42,7 +42,7 @@
         <a class="dropdown-item {{set_active(['pengurus.sejarahEdit', 'pengurus.sejarahUpdate'])}}" href="{{route('pengurus.sejarahEdit')}}">Sejarah</a>
         <a class="dropdown-item {{set_active(['pengurus.sambutan', 'pengurus.sambutanEdit'])}}" href="{{route('pengurus.sambutan')}}">Sambutan</a>
         
-        <a class="dropdown-item" href="#"><i>Etc. Coming soon</i></a>
+        {{-- <a class="dropdown-item" href="#"><i>Etc. Coming soon</i></a> --}}
         
       </div>
     </li>
@@ -55,10 +55,7 @@
       <div class="dropdown-menu" aria-labelledby="pagesDropdown2">
         <h6 class="dropdown-header">Basic</h6>
         <a class="dropdown-item {{set_active(['pengurus.wilayah', 'pengurus.wilayahKelola'])}}" href="{{route('pengurus.wilayah')}}">Wilayah</a>
-              
-        {{-- <a class="dropdown-item" href="#">Lingkungan</a> --}}
-        {{-- <h6 class="dropdown-header">Validasi Pengguna</h6> --}}
-        <a class="dropdown-item" href="#">Verifikasi Pengguna</a>
+        {{-- <a class="dropdown-item" href="#">Verifikasi Pengguna</a> --}}
         <h6 class="dropdown-header"><i>Validasi Usulan</i></h6>
         <a class="dropdown-item {{set_active(['pengurus.validasiUsulan'])}}" href="{{route('pengurus.validasiUsulan')}}">Usulan Pelayanan</a>
       </div>
@@ -87,6 +84,11 @@
         <i class="fas fa-fw fa-calendar"></i>
         <span>Event</span></a>
     </li>
+    <li class=" {{set_active(['pengurus.userIndex', 'pengurus.userCreate'])}} nav-item">
+      <a class="nav-link" href="{{route('pengurus.userIndex')}}">
+      <i class="fas fa-fw fa-user"></i>
+      <span>Pengguna</span></a>
+    </li>
   </ul>
   @elseif(Auth::user()->is_verified == 11)
   <ul class="sidebar navbar-nav">
@@ -101,6 +103,11 @@
         <i class="fas fa-fw fa-fire"></i>
         <span>Usulan Pelayanan</span>
       </a>
+    </li>
+    <li class=" {{set_active(['pengurus.userIndex', 'pengurus.userCreate'])}} nav-item">
+      <a class="nav-link" href="{{route('pengurus.userIndex')}}">
+      <i class="fas fa-fw fa-user"></i>
+      <span>Pengguna</span></a>
     </li>
   </ul>
   @else

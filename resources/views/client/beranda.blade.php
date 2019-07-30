@@ -24,7 +24,10 @@
                     <img src="{{asset('client/img/bg-img')}}/{{$sambutan->foto}}" alt="sambutan-gambar">
                     <div class="about-text">
                         <h4>Sambutan</h4>
-                        <p>{{str_limit($sambutan->sambutan,200)}}</p>
+                        {{-- @php
+                            echo htmlspecialchars_decode(str_limit($sambutan->sambutan,180))
+                        @endphp --}}
+                        {{-- <p>{{str_limit($sambutan->sambutan,200)}}</p> --}}
                         <a href="{{route('client.sambutan')}}">Selanjutnya.. <i class="fa fa-angle-double-right"></i></a>
                     </div>
                 </div>
@@ -36,7 +39,10 @@
                     <img src="{{asset('client/img/bg-img')}}/{{$sejarah->foto}}" alt="">
                     <div class="about-text">
                         <h4>Sejarah</h4>
-                        <p>{{str_limit($sejarah->sejarah,200)}}</p>
+                        {{-- @php
+                            echo htmlspecialchars_decode(str_limit($sejarah->sejarah,200))
+                        @endphp --}}
+                        {{-- <p>{{str_limit($sejarah->sejarah,200)}}</p> --}}
                         <a href="{{route('client.sejarah')}}">Selanjutnya.. <i class="fa fa-angle-double-right"></i></a>
                     </div>
                 </div>
@@ -48,8 +54,8 @@
                     <img src="{{asset('client/img/bg-img/5.jpg')}}" alt="">
                     <div class="about-text">
                         <h4>Pelayanan</h4>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae, assumenda impedit? Quaerat amet consectetur culpa laudantium ducimus iure, alias aspernatur itaque quas. Nihil delectus, odio facere fuga laborum ipsum ipsam?</p>
-                        <a href="">Selanjutnya.. <i class="fa fa-angle-double-right"></i></a>
+                        <p>Lihat daftar pelayanan wilayah sesuai dengan organisasi & seksi-seksi bidang.</p>
+                        <a href="{{route('client.pelayan')}}">Selanjutnya.. <i class="fa fa-angle-double-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -94,10 +100,10 @@
                                         <div class="events-meta">
                                             <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> {{ \Carbon\Carbon::parse($acara->tanggal)->format('M d Y')}}</a>
                                             <a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ \Carbon\Carbon::parse($acara->tanggal)->format('H:i A')}}</a>
-                                            <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ \Carbon\Carbon::parse($acara->tanggal)->format('H:i A')}}</a>
+                                            <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> {{$acara->tempat}}</a>
                                         </div>
-                                        <p>{{str_limit($acara->deskripsi, 150)}}</p>
-                                        <a href="{{route('client.singleEvent', $acara->slug)}}">Selanjutnya.. <i class="fa fa-angle-double-right"></i></a>
+                                        {{-- <p>{{str_limit($acara->deskripsi, 150)}}</p> --}}
+                                        <a href="{{route('client.singleEvent', $acara->slug)}}">Detail Event.. <i class="fa fa-angle-double-right"></i></a>
                                     </div>
                                     <div class="find-out-more-btn">
                                         <a href="{{route('client.singleEvent', $acara->slug)}}" class="btn crose-btn btn-2">Selengkapnya..</a>
@@ -147,8 +153,11 @@
                             <a href="#"><i class="fa fa-user" aria-hidden="true"></i> {{$news->user->name}}</a>
                             <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> {{$news->created_at->format('M d Y')}}</a>
                         </div>
-                        <p class="post-excerpt">{{str_limit($news->deskripsi,200)}}</p>
-                        <a href="{{route('client.singleBerita', $news->slug)}}">Selanjutnya.. <i class="fa fa-angle-double-right"></i></a>
+                        @php
+                        echo htmlspecialchars_decode(str_limit($news->deskripsi,180))
+                        @endphp
+                        {{-- <p class="post-excerpt">{{str_limit($news->deskripsi,200)}}</p> --}}
+                        <a href="{{route('client.singleBerita', $news->slug)}}">Baca berita.. <i class="fa fa-angle-double-right"></i></a>
                     </div>
                 </div>
             </div>

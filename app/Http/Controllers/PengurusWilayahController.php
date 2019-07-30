@@ -30,10 +30,10 @@ class PengurusWilayahController extends Controller
 
     public function wilayahKelola($wilayah_id){
         $wilayah = Wilayah::find($wilayah_id);
+        $usulan = Usulan::with('seksi', 'organisasi')->where('wilayah_id', $wilayah->id)->orderBy('id', 'desc')->get();
         $lingkungan = Lingkungan::where('wilayah_id', $wilayah->id)->orderBy('id', 'DESC')->get();
         $pengelola = User::where('wilayah_id', $wilayah->id)->orderBy('id', 'DESC')->get();
-        // return $pengelola;
-        return view('admin.wilayah-kelola', compact('wilayah', 'lingkungan', 'pengelola'));
+        return view('admin.wilayah-kelola', compact('wilayah', 'lingkungan', 'usulan'));
     }
 
     public function wilayahDelete($id){

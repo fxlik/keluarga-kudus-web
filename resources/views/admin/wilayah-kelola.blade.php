@@ -76,7 +76,7 @@
                         </form>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover">
+                        <table id="yaya" class="table table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>No.</th>
@@ -113,36 +113,53 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-7">
+            
+            <div style="background:honeydew; margin-top:20px;" class="col-md-7">
                 <div class="content-group">
-                    <h5>Pengelola Wilayah</h5>
+                    <h5><b><u>Daftar Usulan</u></b></h5>
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover">
+                        <table id="usulanin" class="table table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Nama</th>
-                                    <th>Email</th>
+                                    <th>Status</th>
+                                    <th>Perihal</th>
+                                    <th>Organisasi Tujuan</th>
                                     <th>.</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Nama</th>
-                                    <th>Email</th>
+                                    <th>Status</th>
+                                    <th>Perihal</th>
+                                    <th>Organisasi Tujuan</th>
                                     <th>.</th>
                                 </tr>
                             </tfoot>
                             <tbody>
-                                @foreach ($pengelola as $p)
+                                @foreach ($usulan as $u)
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
-                                    <td>{{$p->name}}</td>
-                                    <td>{{$p->email}}</td>
-                                <td>
-                                    <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Hapus</a>
-                                </td>
+                                    <td>
+                                        @if ($u->status == 1)
+                                        <span class="badge badge-success"><i class="fas fa-check-circle"></i> verified</span>
+                                        @else
+                                        <span class="badge badge-secondary"><i class="fas fa-clock"></i> Pending</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{$u->perihal}} <br>
+                                        <span style="color:darkgray; font-size:13px;"> Diajukan pada: <i>{{ \Carbon\Carbon::parse($u->created_at)->format('M d Y')}}</i></span>
+                                    </td>
+                                    <td>
+                                        {{$u->organisasi->nama}} <br>
+                                        <span style="color:darkgray; font-style:italic; font-size:15px;"><b>{{$u->seksi->nama}}</b></span>
+                                    </td>
+                                    <td>
+                                        {{-- <button data-idden="{{$rose->perihal}}" type="button" class="detailin btn btn-sm btn-primary" data-toggle="modal" >Detail</button> --}}
+                                        <a data-tanggapan="{{$u->tanggapan}}" data-detail="{{$u->detail}}" data-iden="{{$u->perihal}}" href="#" class="detailin btn btn-sm btn-primary"> Detail</a>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -153,7 +170,47 @@
         </div>
     </div>
     @endif
-</div>    
+</div>
+
+<!-- Large modal -->
+
+<div id="modalin" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle"> <p style="font-style:italic" id="sayaya"></p></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                  
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                    
+                  <div class="col-md-12">
+                      <div class="alert alert-warning">
+                          <p style="font-style:italic; font-size:15px;">Detail Usulan:</p>
+                          <div id="detailan">
+          
+                          </div>
+                      </div>
+                      <div class="alert alert-success">
+                          <p style="font-style:italic; font-size:15px;">Tanggapan Admin:</p>
+                          <div id="tanggapin">
+  
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+              </div>
+          </div>
+      </div>
+    </div>
+</div>
 @endsection
 
 @section('script')
@@ -291,6 +348,22 @@ $(document).on('click', '.hapusin', function(){
   }else{
     // do nothing
   } 
+});
+
+$(document).ready(function() {
+  $('#yaya').DataTable();
+});
+
+$(document).ready(function() {
+  $('#usulanin').DataTable();
+});
+
+$('.detailin').click(function (e) {
+    $('#sayaya').text('Perihal: '+$(this).data('iden'));
+    $('#detailan').html($(this).data('detail'));
+    $('#tanggapin').html($(this).data('tanggapan'));
+    $('#modalin').modal('show');
+    
 });
 </script> 
 @endsection

@@ -55,8 +55,8 @@
                         <input type="hidden" name="userganti_id" value="{{Auth::user()->id}}">
                         <div class="form-group">
                             <div class="form-label-group">
-                                <input name="passwordin" type="password" id="passwordin" class="form-control" placeholder="Password">
-                                <label for="passwordin">Password</label>
+                                <input name="passwordin" type="password" id="passwordin" class="form-control" placeholder="Password Baru">
+                                <label for="passwordin">Password Baru</label>
                             </div>
                         </div>
                         <div class="form-group">
@@ -72,9 +72,11 @@
                 </div>
             </div>
             <div class="col-md-9">
+                @if (Auth::user()->is_verified == 1)
                 <div style="margin-bottom:15px;">
                     <a class="btn btn-xs btn-primary" href="{{route('pengurus.userCreate')}}"><i class=" fas fa-plus-square"></i> Tambah User</a>
                 </div>
+                
                 <div class="table-responsive">
                     <table class="table table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
                         <thead>
@@ -123,6 +125,11 @@
                         </tbody>
                     </table>
                 </div>
+                @else
+                    <div>
+                        Silakan update password anda menggunakan form di samping.
+                    </div>
+                @endif
             </div>
         </div>
     </div>

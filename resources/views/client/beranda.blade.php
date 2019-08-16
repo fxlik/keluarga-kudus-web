@@ -153,11 +153,11 @@
                             <a href="#"><i class="fa fa-user" aria-hidden="true"></i> {{$news->user->name}}</a>
                             <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> {{$news->created_at->format('M d Y')}}</a>
                         </div>
-                        @php
+                        {{-- @php
                         echo htmlspecialchars_decode(str_limit($news->deskripsi,180))
-                        @endphp
+                        @endphp --}}
                         {{-- <p class="post-excerpt">{{str_limit($news->deskripsi,200)}}</p> --}}
-                        <a href="{{route('client.singleBerita', $news->slug)}}">Baca berita.. <i class="fa fa-angle-double-right"></i></a>
+                        <a href="{{route('client.singleBerita', $news->slug)}}">Baca berita selengkapnya.. <i class="fa fa-angle-double-right"></i></a>
                     </div>
                 </div>
             </div>

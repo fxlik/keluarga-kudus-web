@@ -43,9 +43,9 @@
                                 <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ \Carbon\Carbon::parse($item->tanggal)->format('H:i A')}}</a>
                             </div>
                             <div class="content-group">
-                                @php
+                                {{-- @php
                                     echo htmlspecialchars_decode(str_limit($item->deskripsi,180))
-                                @endphp
+                                @endphp --}}
                             </div>
                             <a href="{{route('client.singleEvent', $item->slug)}}">Selengkapnya <i class="fa fa-angle-double-right"></i></a>
                         </div>

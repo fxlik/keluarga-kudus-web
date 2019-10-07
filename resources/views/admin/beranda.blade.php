@@ -66,7 +66,7 @@
         </div>
         <div class="mr-5">{{count($berita)}} Berita</div>
       </div>
-      <a class="card-footer text-white clearfix small z-1" href="#">
+      <a class="card-footer text-white clearfix small z-1" href="{{route('pengurus.berita')}}">
         <span class="float-left">Kelola Berita..</span>
         <span class="float-right">
           <i class="fas fa-angle-right"></i>
@@ -82,7 +82,7 @@
         </div>
         <div class="mr-5">{{count($event)}} Event</div>
       </div>
-      <a class="card-footer text-white clearfix small z-1" href="#">
+      <a class="card-footer text-white clearfix small z-1" href="{{route('pengurus.event')}}">
         <span class="float-left">Kelola Event..</span>
         <span class="float-right">
           <i class="fas fa-angle-right"></i>
@@ -118,7 +118,7 @@
         </div>
         <div class="mr-5">{{count($berita)}} Berita</div>
       </div>
-      <a class="card-footer text-white clearfix small z-1" href="#">
+      <a class="card-footer text-white clearfix small z-1" href="{{route('pengurus.berita')}}">
         <span class="float-left">Kelola Berita..</span>
         <span class="float-right">
           <i class="fas fa-angle-right"></i>
@@ -134,7 +134,7 @@
         </div>
         <div class="mr-5">{{count($event)}} Event</div>
       </div>
-      <a class="card-footer text-white clearfix small z-1" href="#">
+      <a class="card-footer text-white clearfix small z-1" href="{{route('pengurus.event')}}">
         <span class="float-left">Kelola Event..</span>
         <span class="float-right">
           <i class="fas fa-angle-right"></i>
